@@ -23,8 +23,7 @@ if(isset($_POST['register_button'])){
 	//First name
 	$fname = strip_tags($_POST['reg_fname']);//saving into $fname variable what has been post in the form by removing php and htm tags thanks to "strip_tags"
 	$fname = str_replace(" ", "", $fname);//replacing every spaces of $fname by no space
-	$fname = ucfirst(strtolower($fname));//Lowercase $fname and upercase first letter of $fname
-
+	$fname = ucfirst(strtolower($fname));//Lowercase $fname and upercase first letter of $fname	
 	//Last name
 	$lname = strip_tags($_POST['reg_lname']);//saving into $lname variable what has been post in the form by removing php and htm tags thanks to "strip_tags"
 	$lname = str_replace(" ", "", $lname);//replacing every spaces of $lname by no space
@@ -34,7 +33,6 @@ if(isset($_POST['register_button'])){
 	$em = strip_tags($_POST['reg_email']);//saving into $em variable what has been post in the form by removing php and htm tags thanks to "strip_tags"
 	$em = str_replace(" ", "", $em);//replacing every spaces of $em by no space
 	$em = ucfirst(strtolower($em));//Lowercase $em and upercase first letter of $email
-
 	//Email2
 	$em2 = strip_tags($_POST['reg_email2']);//saving into $em2 variable what has been post in the form by removing php and htm tags thanks to "strip_tags"
 	$em2 = str_replace(" ", "", $em2);//replacing every spaces of $em2 by no space
@@ -42,10 +40,24 @@ if(isset($_POST['register_button'])){
 
 	//Password
 	$password = strip_tags($_POST['reg_password']);//saving into $password variable what has been post in the form by removing php and htm tags thanks to "strip_tags"
-
 	//Password2
 	$password2 = strip_tags($_POST['reg_password2']);//saving into $password2 variable what has been post in the form by removing php and htm tags thanks to "strip_tags"
 
+	//Signe Up date
+	$date = date("Y-m-d"); //current date
+
+	if($em == $em2) {
+		//Check if email is in valid format
+		if(filter_var($em, FILTER_VALIDAT_EMAIL)){
+
+			$em = filter_var($em , FILTER_VALIDAT_EMAIL);
+
+		}else{
+			echo "Invalid format";						
+		}
+	}else{
+		echo "Emails don't match";
+	}
 }
 
 ?>
