@@ -1,4 +1,5 @@
 <?php
+session_start();
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  //connection variable
 $con = mysqli_connect("localhost", "root", "", "smallworld");
@@ -28,20 +29,24 @@ if(isset($_POST['register_button'])){
 	//First name
 	$fname = strip_tags($_POST['reg_fname']);//saving into $fname variable what has been post in the form by removing php and htm tags thanks to "strip_tags"
 	$fname = str_replace(" ", "", $fname);//replacing every spaces of $fname by no space
-	$fname = ucfirst(strtolower($fname));//Lowercase $fname and upercase first letter of $fname	
+	$fname = ucfirst(strtolower($fname));//Lowercase $fname and upercase first letter of $fname
+	$_SESSION['reg_fname'] = $fname;//Stores first name into session variable
 	//Last name
 	$lname = strip_tags($_POST['reg_lname']);//saving into $lname variable what has been post in the form by removing php and htm tags thanks to "strip_tags"
 	$lname = str_replace(" ", "", $lname);//replacing every spaces of $lname by no space
 	$lname = ucfirst(strtolower($lname));//Lowercase $lname and upercase first letter of $lname
+	$_SESSION['reg_lname'] = $lname;//Stores last name into session variable
 
 	//Email
 	$em = strip_tags($_POST['reg_email']);//saving into $em variable what has been post in the form by removing php and htm tags thanks to "strip_tags"
 	$em = str_replace(" ", "", $em);//replacing every spaces of $em by no space
 	$em = ucfirst(strtolower($em));//Lowercase $em and upercase first letter of $email
+	$_SESSION['reg_email'] = $em;//Stores email name into session variable	
 	//Email2
 	$em2 = strip_tags($_POST['reg_email2']);//saving into $em2 variable what has been post in the form by removing php and htm tags thanks to "strip_tags"
 	$em2 = str_replace(" ", "", $em2);//replacing every spaces of $em2 by no space
 	$em2 = ucfirst(strtolower($em2));//Lowercase $em2 and upercase first letter of $email
+	$_SESSION['reg_email2'] = $em2;//Stores email2 name into session variable	
 
 	//Password
 	$password = strip_tags($_POST['reg_password']);//saving into $password variable what has been post in the form by removing php and htm tags thanks to "strip_tags"
@@ -77,16 +82,16 @@ if(isset($_POST['register_button'])){
 		echo "Emails don't match";
 	}
 
-	if(strlen($fname > 25) || strlen($fname < 2)){
+	if(strlen($fname) > 25 || strlen($fname) < 2){
 		echo "Your first name must be between 2 and 25 characters";
 	}
 
-	if(strlen($lname > 25) || strlen($lname < 2)){
+	if(strlen($lname) > 25 || strlen($lname) < 2){
 		echo "Your last name must be between 2 and 25 characters";
 	}
 
-	if(strlen($password > 30) || strlen($password < 5)){
-		echo "Your first name must be between 5 and 30 characters";
+	if(strlen($password) > 30 || strlen($password) < 5){
+		echo "Your password name must be between 5 and 30 characters";
 	}
 
 	if($password != $password2) {
@@ -109,21 +114,36 @@ if(isset($_POST['register_button'])){
 		<input 
 			type="text" 
 			name="reg_fname" 
-			placeholder="First Name" 
+			placeholder="First Name"
+			value ="<?php
+				if(isset($_SESSION['reg_fname'])) {
+					echo $_SESSION['reg_fname'];
+				}
+			?>"
 			required
 		>
 		<br>
 		<input 
 			type="text" 
 			name="reg_lname" 
-			placeholder="Last Name" 
+			placeholder="Last Name"
+			value ="<?php
+				if(isset($_SESSION['reg_lname'])) {
+					echo $_SESSION['reg_lname'];
+				}
+			?>" 
 			required
 		>
 		<br>
 		<input 
 			type="text" 
 			name="reg_email" 
-			placeholder="Email" 
+			placeholder="Email"
+			value ="<?php
+				if(isset($_SESSION['reg_email'])) {
+					echo $_SESSION['reg_email'];
+				}
+			?>" 
 			required
 		>
 		<br>
@@ -131,20 +151,25 @@ if(isset($_POST['register_button'])){
 			type="text" 
 			name="reg_email2" 
 			placeholder="Confirm Email" 
+			value ="<?php
+				if(isset($_SESSION['reg_email2'])) {
+					echo $_SESSION['reg_email2'];
+				}
+			?>"
 			required
 		>
 		<br>
 		<input 
 			type="password" 
 			name="reg_password" 
-			placeholder="Password" 
+			placeholder="Password"			
 			required
 		>
 		<br>
 		<input 
 			type="password" 
 			name="reg_password2" 
-			placeholder="Confirm Password" 
+			placeholder="Confirm Password"			
 			required
 		>
 		<br>
