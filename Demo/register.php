@@ -1,4 +1,5 @@
 <?php
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  //connection variable
 $con = mysqli_connect("localhost", "root", "", "smallworld");
 
@@ -7,7 +8,9 @@ if(mysqli_connect_errno()) {
 	echo "Failed to connect: ". mysqli_connect_errno();
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //declaring variable to prevent errors
+
 $fname = ""; //first name
 $lname = ""; //last name
 $em = ""; //email
@@ -16,6 +19,8 @@ $password = ""; //password
 $password2 = ""; //password2
 $date = ""; //Sign Up date
 $error_array = ""; //Holds error messages
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 if(isset($_POST['register_button'])){
 	//registration form value
@@ -42,15 +47,28 @@ if(isset($_POST['register_button'])){
 	$password = strip_tags($_POST['reg_password']);//saving into $password variable what has been post in the form by removing php and htm tags thanks to "strip_tags"
 	//Password2
 	$password2 = strip_tags($_POST['reg_password2']);//saving into $password2 variable what has been post in the form by removing php and htm tags thanks to "strip_tags"
-
 	//Signe Up date
 	$date = date("Y-m-d"); //current date
 
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	//Checking
+
 	if($em == $em2) {
 		//Check if email is in valid format
-		if(filter_var($em, FILTER_VALIDAT_EMAIL)){
+		if(filter_var($em, FILTER_VALIDATE_EMAIL)){
 
-			$em = filter_var($em , FILTER_VALIDAT_EMAIL);
+			$em = filter_var($em , FILTER_VALIDATE_EMAIL);
+
+			//Check if email exists
+			$e_check = mysqli_query($con, "SELECT email FROM users WHERE email='$em'");
+
+			//Count the number of rows returned
+			$num_rows = mysqli_num_rows($e_check);
+
+			if($num_rows > 0) {
+				echo "Email already in use";
+			}
 
 		}else{
 			echo "Invalid format";						
@@ -97,14 +115,14 @@ if(isset($_POST['register_button'])){
 		>
 		<br>
 		<input 
-			type="text" 
+			type="password" 
 			name="reg_password" 
 			placeholder="Password" 
 			required
 		>
 		<br>
 		<input 
-			type="text" 
+			type="password" 
 			name="reg_password2" 
 			placeholder="Confirm Password" 
 			required
