@@ -101,6 +101,29 @@ if(isset($_POST['register_button'])){
 				array_push($error_array, "Your password can only contain English characters or numbers<br>");
 		}
 	}
+
+	//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	//insert values into database
+
+	if(empty($error_array)){
+		$password = md5($password); //Encrypt password before sending to database
+
+		//Generating username by concatenating first and last name
+		$username = strtolower($fname . "_".$lname);
+		$check_username_query = mysqli_query($con, "SELECT username FROM users WHERE username='$username'");
+
+		$i = 0;
+		//if username exists add number to username 
+		while(mysqli_num_rows($check_username_query) != 0){
+			$i++;
+			$username = $username . "_". $i;
+			$check_username_query;
+		}
+	}
+
+
+
 }
 ?>
 
