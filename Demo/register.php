@@ -23,6 +23,8 @@ $error_array = array(); //Holds error messages
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//Setting variables after registration
+
 if(isset($_POST['register_button'])){
 	//registration form value
 
@@ -57,7 +59,7 @@ if(isset($_POST['register_button'])){
 
 	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	//Checking
+	//Checking inputs
 
 	if($em == $em2) {
 		//Check if email is in valid format
@@ -129,9 +131,19 @@ if(isset($_POST['register_button'])){
 			$profile_pic = "assets/images/profile_pics/default/head_emerald.png";
 
 
-
+		//Insert values
 		$query = mysqli_query(
 				$con, "INSERT INTO users VALUES ('', '$fname', '$lname', '$username', '$em', '$password', '$date', '$profile_pic', '0', '0', 'no', ',')");
+
+		//Validation message
+		array_push($error_array, "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>");
+
+		//Clear session vaiables
+		$_SESSION['reg_fname'] = "";
+		$_SESSION['reg_lname'] = "";
+		$_SESSION['reg_email'] = "";
+		$_SESSION['reg_email2'] = "";
+
 	}
 }
 ?>
@@ -233,6 +245,11 @@ if(isset($_POST['register_button'])){
 			name="register_button" 
 			value="Register"
 		>
+		<br>
+		<?php
+			if(in_array("<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>", $error_array))
+					echo "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>";
+		?>	
 	</form>
 </body>
 </html>
