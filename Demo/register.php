@@ -10,6 +10,26 @@ require 'includes/form_handlers/register_handler.php';
 <body>
 	<form action="register.php" method="POST">
 		<input 
+			type="email" 
+			name="log_email" 
+			placeholder="Email Address"
+		>
+		<br>		 
+		<input 
+			type="password" 
+			name="log_password" 
+			placeholder="Password"
+		>
+		<br>
+		<input 
+			type="submit" 
+			name="login_button" 
+			value="Login"
+		>
+		<br>
+	</form>
+	<form action="register.php" method="POST">
+		<input 
 			type="text" 
 			name="reg_fname" 
 			placeholder="First Name"
