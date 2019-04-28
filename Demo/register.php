@@ -120,6 +120,13 @@ if(isset($_POST['register_button'])){
 			$username = $username . "_". $i;
 			$check_username_query;
 		}
+		//Profile picture assignement
+		$rand = rand(1, 2); //Random number between 1 and 2
+
+		if($rand = 1)
+			$profile_pic = "assets/images/profile_pics/default/head_deep_blue.png";
+		else if($rand = 2)
+			$profile_pic = "assets/images/profile_pics/default/head_emerald.png";
 	}
 
 
@@ -141,7 +148,7 @@ if(isset($_POST['register_button'])){
 				if(isset($_SESSION['reg_fname'])) {
 					echo $_SESSION['reg_fname'];
 				}
-			?>"
+			?>
 			required
 		>
 		<br>
