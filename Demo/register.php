@@ -127,10 +127,12 @@ if(isset($_POST['register_button'])){
 			$profile_pic = "assets/images/profile_pics/default/head_deep_blue.png";
 		else if($rand = 2)
 			$profile_pic = "assets/images/profile_pics/default/head_emerald.png";
+
+
+
+		$query = mysqli_query(
+				$con, "INSERT INTO users VALUES ('', '$fname', '$lname', '$username', '$em', '$password', '$date', '$profile_pic', '0', '0', 'no', ',')");
 	}
-
-
-
 }
 ?>
 
@@ -148,7 +150,7 @@ if(isset($_POST['register_button'])){
 				if(isset($_SESSION['reg_fname'])) {
 					echo $_SESSION['reg_fname'];
 				}
-			?>
+			?>"
 			required
 		>
 		<br>
