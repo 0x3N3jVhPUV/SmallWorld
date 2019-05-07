@@ -4,13 +4,22 @@ require 'includes/form_handlers/register_handler.php';
 require 'includes/form_handlers/login_handler.php';
 ?>
 
-<html>
-<head>
-	<title>Welcome to Small World</title>
-	<link rel="stylesheet" type="text/css" href="assets/css/register_style.css">
-</head>
+<!DOCTYPE html>
+<html lang="en">
+	<head charset='utf-8'>
+		<title>Welcome to Small World</title>
+		<link rel="stylesheet" type="text/css" href="assets/css/register_style.css">
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
 <body>
-	<div class="wrapper">
+	<div class="background">
 		<div class="login_box">
 			<div class="login_header">
 				<h1>Small World</h1>
