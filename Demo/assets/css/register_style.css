@@ -23,12 +23,20 @@ body{
 	padding: 0;
 }
 
-.background {
-	background-image: url("../images/backgrounds/Back.jpg");
-	background-size: 100%;
-	width: 100%;
-	height: 100%;
-	min-width: 950px;
+a {
+	text-decoration: none;
+	color: #74b9ff;
+}
+
+.landing {
+  position: relative;
+  background-image: url("../images/backgrounds/Back.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  margin-top: -24px;
+  margin-bottom: -50px;
 }
 
 .login_box {
@@ -86,4 +94,8 @@ input[type="text"],[type="email"],[type="password"]{
 
 input[type="text"]:hover, [type="email"]:hover, [type="password"]:hover{
 	border-color: #3498db;
+}
+
+#second {
+	display: none;
 }
