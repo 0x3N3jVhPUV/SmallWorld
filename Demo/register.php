@@ -20,6 +20,20 @@ require 'includes/form_handlers/login_handler.php';
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 <body>
+
+	<?php
+		if(isset($_POST['register_button'])){
+			echo '
+			<script>
+				$(document).ready(function(){
+					$("#first").hide();
+					$("#second").show();
+				})
+			</script>
+			';
+		}
+	?>
+
 	<div class="landing">
 		<div class="login_box">
 			<div class="login_header">
