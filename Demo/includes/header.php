@@ -2,8 +2,8 @@
 require 'config/config.php';
 
 if (isset($_SESSION['username'])) {
-	$userLoggIn = $_SESSION['username'];
-	$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggIn'");
+	$userLoggedIn = $_SESSION['username'];
+	$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
 	$user = mysqli_fetch_array($user_details_query);
 }
 else{
@@ -30,7 +30,7 @@ else{
 		<a href="index.php">Small World</a>		
 	</div>
 	<nav>
-		<a href="#">
+		<a href="<?php echo $userLoggedIn; ?>">
 			<?php echo $user['first_name']; ?>
 		</a>
 		<a href="index.php">
